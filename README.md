@@ -2,7 +2,7 @@
 ThemePackInstaller is an executable to install a themepack on a computer.
 The executable was written and tested in .Net 4.6.2.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/r8r6j98kri947g09?svg=true)](https://ci.appveyor.com/project/SeppPenner/wordcloudgenerator)
+[![Build status](https://ci.appveyor.com/api/projects/status/nolcmj67k48ab4pe?svg=true)](https://ci.appveyor.com/project/SeppPenner/themepackinstaller)
 
 
 Change history
