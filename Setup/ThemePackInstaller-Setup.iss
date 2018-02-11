@@ -2,10 +2,11 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ThemePackInstaller"
-#define MyAppVersion "1.0.0.0"
+#define MyAppVersion "1.0.0.1"
 #define MyAppPublisher "Hämmer Electronics"
 #define MyAppURL "www.softwareload24.de.tl"
 #define MyAppExeName "ThemePackInstaller.exe"
+#define MyPath "F:\TODO\C# und VB\ThemePackInstaller"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -25,10 +26,10 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-LicenseFile=C:\Users\tim\Desktop\ThemePackInstaller\ThemePackInstaller\bin\Debug\License.txt
-OutputDir=C:\Users\tim\Desktop\ThemePackInstaller\Setup
+LicenseFile={#MyPath}\ThemePackInstaller\bin\Debug\License.txt
+OutputDir={#MyPath}\Setup
 OutputBaseFilename=ThemePackInstaller-Setup
-SetupIconFile=C:\Users\tim\Desktop\ThemePackInstaller\ThemePackInstaller\bin\Debug\Theme.ico
+SetupIconFile={#MyPath}\ThemePackInstaller\bin\Debug\Theme.ico
 Compression=lzma
 SolidCompression=yes
 
@@ -41,9 +42,9 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "C:\Users\tim\Desktop\ThemePackInstaller\ThemePackInstaller\bin\Debug\ThemePackInstaller.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\tim\Desktop\ThemePackInstaller\ThemePackInstaller\bin\Debug\License.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\tim\Desktop\ThemePackInstaller\ThemePackInstaller\bin\Debug\Anti-BVB.themepack"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\ThemePackInstaller\bin\Debug\ThemePackInstaller.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\ThemePackInstaller\bin\Debug\License.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\ThemePackInstaller\bin\Debug\Anti-BVB.themepack"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
