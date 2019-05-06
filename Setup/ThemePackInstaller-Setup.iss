@@ -2,11 +2,11 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ThemePackInstaller"
-#define MyAppVersion "1.0.0.1"
+#define MyAppVersion "1.0.0.2"
 #define MyAppPublisher "Hämmer Electronics"
 #define MyAppURL "www.softwareload24.de.tl"
 #define MyAppExeName "ThemePackInstaller.exe"
-#define MyPath "F:\TODO\C# und VB\ThemePackInstaller"
+#define MyPath "C:\Users\tim\Desktop\Updaten_Snyk\ThemePackInstaller"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
