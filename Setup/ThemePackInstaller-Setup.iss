@@ -2,11 +2,11 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ThemePackInstaller"
-#define MyAppVersion "1.0.0.2"
+#define MyAppVersion "1.0.1.0"
 #define MyAppPublisher "Hämmer Electronics"
 #define MyAppURL "www.softwareload24.de.tl"
 #define MyAppExeName "ThemePackInstaller.exe"
-#define MyPath "C:\Users\tim\Desktop\Updaten_Snyk\ThemePackInstaller"
+#define MyPath "C:\Users\Tim\Documents\Git\C# und VB\ThemePackInstaller"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -23,13 +23,13 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={pf}\{#MyAppName}
+DefaultDirName={commonpf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-LicenseFile={#MyPath}\ThemePackInstaller\bin\Debug\License.txt
+LicenseFile={#MyPath}\ThemePackInstaller\bin\Release\License.txt
 OutputDir={#MyPath}\Setup
 OutputBaseFilename=ThemePackInstaller-Setup
-SetupIconFile={#MyPath}\ThemePackInstaller\bin\Debug\Theme.ico
+SetupIconFile={#MyPath}\ThemePackInstaller\bin\Release\Theme.ico
 Compression=lzma
 SolidCompression=yes
 
@@ -42,9 +42,9 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "{#MyPath}\ThemePackInstaller\bin\Debug\ThemePackInstaller.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyPath}\ThemePackInstaller\bin\Debug\License.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyPath}\ThemePackInstaller\bin\Debug\Anti-BVB.themepack"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\ThemePackInstaller\bin\Release\ThemePackInstaller.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\ThemePackInstaller\bin\Release\License.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyPath}\ThemePackInstaller\bin\Release\Anti-BVB.themepack"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
