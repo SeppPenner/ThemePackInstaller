@@ -2,11 +2,10 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ThemePackInstaller"
-#define MyAppVersion "1.0.1.0"
+#define MyAppVersion "1.0.2.0"
 #define MyAppPublisher "Hämmer Electronics"
 #define MyAppURL "www.softwareload24.de.tl"
 #define MyAppExeName "ThemePackInstaller.exe"
-#define MyPath "C:\Users\Tim\Documents\Git\C# und VB\ThemePackInstaller"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -26,10 +25,10 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={commonpf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-LicenseFile={#MyPath}\ThemePackInstaller\bin\Release\License.txt
-OutputDir={#MyPath}\Setup
+LicenseFile=..\src\ThemePackInstaller\License.txt
+OutputDir=..\Setup
 OutputBaseFilename=ThemePackInstaller-Setup
-SetupIconFile={#MyPath}\ThemePackInstaller\bin\Release\Theme.ico
+SetupIconFile=..\src\ThemePackInstaller\Theme.ico
 Compression=lzma
 SolidCompression=yes
 
@@ -42,9 +41,10 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "{#MyPath}\ThemePackInstaller\bin\Release\ThemePackInstaller.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyPath}\ThemePackInstaller\bin\Release\License.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyPath}\ThemePackInstaller\bin\Release\Anti-BVB.themepack"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\ThemePackInstaller\bin\Release\net5.0-windows\ThemePackInstaller.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\ThemePackInstaller\bin\Release\net5.0-windows\ThemePackInstaller.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\ThemePackInstaller\bin\Release\net5.0-windows\License.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\ThemePackInstaller\bin\Release\net5.0-windows\Anti-BVB.themepack"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
