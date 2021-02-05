@@ -41,10 +41,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "..\src\ThemePackInstaller\bin\Release\net5.0-windows\ThemePackInstaller.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\ThemePackInstaller\bin\Release\net5.0-windows\ThemePackInstaller.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\ThemePackInstaller\bin\Release\net5.0-windows\License.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\ThemePackInstaller\bin\Release\net5.0-windows\Anti-BVB.themepack"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\ThemePackInstaller\bin\publish\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
