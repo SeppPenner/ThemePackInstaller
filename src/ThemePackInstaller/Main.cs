@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Main.cs" company="Hämmer Electronics">
 //   Copyright (c) All rights reserved.
 // </copyright>
@@ -7,48 +7,42 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace ThemePackInstaller
+namespace ThemePackInstaller;
+
+/// <summary>
+/// The main form.
+/// </summary>
+public partial class Main : Form
 {
-    using System;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Windows.Forms;
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Main"/> class.
+    /// </summary>
+    public Main()
+    {
+        this.InitializeComponent();
+    }
 
     /// <summary>
-    /// The main form.
+    /// Creates the parameters.
     /// </summary>
-    public partial class Main : Form
+    protected override CreateParams CreateParams
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Main"/> class.
-        /// </summary>
-        public Main()
+        get
         {
-            this.InitializeComponent();
+            var cp = base.CreateParams;
+            cp.ExStyle |= 0x80;
+            return cp;
         }
+    }
 
-        /// <summary>
-        /// Creates the parameters.
-        /// </summary>
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                var cp = base.CreateParams;
-                cp.ExStyle |= 0x80;
-                return cp;
-            }
-        }
-
-        /// <summary>
-        /// Handles the main load event.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The event args.</param>
-        private void MainLoad(object sender, EventArgs e)
-        {
-            Process.Start(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Anti-BVB.themepack"));
-            this.Visible = false;
-        }
+    /// <summary>
+    /// Handles the main load event.
+    /// </summary>
+    /// <param name="sender">The sender.</param>
+    /// <param name="e">The event args.</param>
+    private void MainLoad(object sender, EventArgs e)
+    {
+        Process.Start(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Anti-BVB.themepack"));
+        this.Visible = false;
     }
 }
