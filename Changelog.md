@@ -1,5 +1,6 @@
 # Change history
 
+* **Version 1.0.9.0 (2026-08-18)** : Removed the quick launch icon from the setup, the installer is not committed anymore but attached to the GitHub release.
 * **Version 1.0.8.0 (2026-08-18)** : Updated NuGet packages, moved to Net 10.0, fixed the broken theme pack installation and the setup script encoding, publish the setup content self contained.
 * **Version 1.0.7.0 (2025-01-09)** : Updated Nuget packages, added audit mode, moved to Net9.0.
 * **Version 1.0.6.0 (2024-01-05)** : Updated nuget packages, moved to Net 8.0.
