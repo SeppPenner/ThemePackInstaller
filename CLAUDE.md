@@ -6,7 +6,8 @@ ThemePackInstaller is a Windows Forms application with exactly one job: it opens
 `Anti-BVB.themepack` from its own program directory through the Windows shell, which makes Windows
 apply that theme, and then hides its own window. There is no user interface, no configuration, no
 command line argument and no console output. The repository is **not** published as a NuGet
-package, it ships as an Inno Setup installer that is committed into the repository itself.
+package, it ships as an Inno Setup installer that is attached to the GitHub release of its tag.
+The built installer is deliberately **not** in git.
 
 One solution `src/ThemePackInstaller.sln` with exactly one project:
 
@@ -34,8 +35,8 @@ Layout inside `src/ThemePackInstaller`:
   `src/ThemePackInstaller/bin/publish`, so the publish has to run before the compile.
 - `build-setup-files.bat`: deletes every `bin` and `obj` below `src`, publishes and removes the
   `*.pdb`. It does **not** call the Inno Setup compiler, that is a separate step.
-- `ThemePackInstaller-Setup.exe`: the built installer, tracked in git even though `.gitignore`
-  excludes `*.exe`.
+- `ThemePackInstaller-Setup.exe`: the build output. It is untracked, `.gitignore` excludes
+  `*.exe`, and it belongs on the GitHub release page, not in a commit.
 
 Repository root: `README.md` (the only user documentation), `Changelog.md`, `License.txt` (MIT),
 `.gitattributes` and `.gitignore`. There is no test project, no `.github` folder, no
@@ -98,9 +99,11 @@ Do not silently "clean up" these, they are existing behaviour:
   `false`, `CreateParams` adds `WS_EX_TOOLWINDOW` and `MainLoad` closes the form right after
   starting the themepack. The form size of 284x262 in the designer is therefore irrelevant, the
   window never gets painted.
-- **The installer executable is tracked although `.gitignore` excludes `*.exe`.**
-  `Setup/ThemePackInstaller-Setup.exe` is in the index, a new build has to be staged with
-  `git add -f`. The same holds for any future file below `Setup`.
+- **The installer does not belong in git.** Up to version 1.0.8.0 every release committed
+  `Setup/ThemePackInstaller-Setup.exe`, which is why the history carries roughly 40 MB of dead
+  installers that no `git rm` can take back. Since version 1.0.9.0 the file is untracked and the
+  installer is uploaded as an asset of the GitHub release instead. Never bring it back with
+  `git add -f`.
 - **The designer file breaks the editorconfig on purpose.** `Main.Designer.cs` uses a block scoped
   namespace, has no `this.` in `Dispose` and declares fully qualified types. That does not break
   the build because the IDE style rules do not run during a command line build
@@ -119,8 +122,9 @@ Do not silently "clean up" these, they are existing behaviour:
 - **`src/ThemePackInstaller.sln.DotSettings`** is tracked and holds nothing but a ReSharper user
   dictionary (`H_00E4mmer`, `themepack`). Leave it alone.
 - **`.gitattributes` sets `* text=auto`**, every rule of the Visual Studio template below it is
-  commented out. `*.themepack binary` and `*.exe binary` were added on top so that the payload and
-  the installer are never line ending normalized. Any further binary file needs its own rule.
+  commented out. `*.themepack binary` and `*.exe binary` were added on top so that the payload is
+  never line ending normalized and the rule still holds for the installers already in the history.
+  Any further binary file needs its own rule.
 
 ## Releasing
 
@@ -135,8 +139,21 @@ Do not silently "clean up" these, they are existing behaviour:
 6. Only now build the installer, in this order:
    - `Setup/build-setup-files.bat` (cleans, publishes self contained, deletes the `*.pdb`).
    - `ISCC.exe Setup/ThemePackInstaller-Setup.iss`, which writes `Setup/ThemePackInstaller-Setup.exe`.
-7. `git add -f Setup/ThemePackInstaller-Setup.exe` and commit it as `Updated setup.`.
-8. Push the commits and the tag.
+7. Push the commits and the tag.
+8. Create the GitHub release for that tag and attach `Setup/ThemePackInstaller-Setup.exe` as an
+   asset. Do **not** commit the installer.
+
+There is no `gh` CLI on this machine. The token that `git push` uses works for the REST API and
+carries the `repo` scope:
+
+```powershell
+$c = "protocol=https`nhost=github.com`n`n" | git credential fill
+$tok = ($c | Select-String '^password=').ToString().Split('=',2)[1]
+```
+
+`POST https://api.github.com/repos/SeppPenner/ThemePackInstaller/releases` with `tag_name` creates
+the release, the `upload_url` it returns takes the asset as
+`Content-Type: application/octet-stream`.
 
 The tag has to exist **before** the installer build. GitVersion takes the version out of the tags,
 so an untagged commit burns a prerelease version such as `1.0.8-1+Branch.master.Sha...` into the
